@@ -1,0 +1,246 @@
+/* customizacao navbar */
+.navbar-logo {
+  width: 200px;
+  height: auto;
+  margin-right: 0.4rem;
+}
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 0.5rem;
+}
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+}
+.navbar-nav .nav-link {
+  font-weight: 700;
+  color: #000000;
+}
+.navbar-nav .nav-link:hover {
+  color: #75b3d6 !important;
+}
+.navbar-nav .nav-link.active {
+  color: #75b3d6 !important;
+  border-bottom: 2px solid #75b3d6;
+  padding-bottom: 0.15rem;
+}
+
+/* customizacao carousel */
+#carouselExampleCaptions {
+  max-height: auto;
+  overflow: hidden;
+}
+#carouselExampleCaptions .carousel-item img {
+  max-height: none;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+#carouselExampleCaptions .carousel-caption {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  left: auto;
+  width: 45%;
+  transform: translateY(-50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border-radius: 0;
+}
+#carouselExampleCaptions .carousel-caption h3,
+#carouselExampleCaptions .carousel-caption p {
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  margin: 0.2rem 0;
+  width: 100%;
+}
+#carouselExampleCaptions .carousel-caption .btn {
+  margin-top: 0.5rem;
+  background-color: #41a8f7;
+  border-color: #1c5c8d;
+  color: #1c5c8d;
+}
+#carouselExampleCaptions .carousel-caption .btn:hover {
+  background-color: #1c5c8d;
+  border-color: rgb(20, 88, 141);
+  color: #ffffff;
+}
+
+.dropdown-menu {
+  background: #ffffff !important;
+  border: 1px solid #d6d6d6 !important;
+  min-width: 220px;
+  text-align: left;
+  padding: 0.2rem 0;
+  right: 0;
+  left: auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+.dropdown-menu.show {
+  right: 0;
+  left: auto;
+}
+.dropdown-item {
+  color: #0c2b66 !important;
+  text-align: left;
+  background: transparent !important;
+  border-radius: 0;
+  padding-right: 0.9rem;
+  padding-left: 0.9rem;
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #f2f7ff !important;
+  color: #0c2b66 !important;
+}
+
+/* Navbar overlay */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 8px 20px rgb(255, 255, 255),
+    0 4px 12px rgb(255, 255, 255);
+}
+.container-fluid {
+  position: relative;
+  z-index: 20;
+}
+body {
+  margin: 0;
+}
+#carouselExampleCaptions {
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), transparent 25%);
+  padding-bottom: 1rem;
+}
+#carouselExampleCaptions::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(255, 255, 255, 1)
+  );
+  pointer-events: none;
+}
+#carouselExampleCaptions .carousel-item {
+  min-height: 380px;
+}
+#carouselExampleCaptions .carousel-item img {
+  height: auto;
+  object-fit: contain;
+  width: 100%;
+}
+
+/* Info cards */
+.info-cards-section {
+  padding: 1rem 1.25rem 2rem;
+  background: #f9fbff;
+}
+.info-cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.info-card {
+  flex: 1 1 250px;
+  max-width: 320px;
+  background: #fff;
+  border: 1px solid #d8dee7;
+  border-radius: 0.65rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+.info-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.2rem;
+  color: #0f2f65;
+}
+.info-card p {
+  margin: 0;
+  color: #3a4360;
+  line-height: 1.4;
+}
+@media (max-width: 760px) {
+  .info-cards-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Clinic info section */
+\n.clinic-info-section {
+  padding: 0.6rem 1.25rem 0.8rem;
+}
+\n.clinic-info-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border: 1px solid #dfe3e9;
+  border-radius: 0.65rem;
+  padding: 0.7rem;
+}
+\n.clinic-image-col {
+  flex: 1 1 220px;
+  max-width: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+\n.clinic-image {
+  width: 100%;
+  height: 150px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+\n.clinic-text-col {
+  flex: 2 1 360px;
+}
+\n.clinic-text-col h3 {
+  font-size: 1.35rem;
+  margin-top: 0;
+  color: #0f2f65;
+}
+\n.clinic-text-col p {
+  margin: 0.25rem 0 0.5rem;
+  color: #3b435f;
+  line-height: 1.4;
+}
+\n.clinic-text-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #1f2f57;
+}
+\n.clinic-text-col li {
+  margin-bottom: 0.3rem;
+}
+\n@media (max-width: 860px) {
+  .clinic-info-container {
+    flex-direction: column;
+  }
+}

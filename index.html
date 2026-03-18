@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioHealth</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/assets/css/index.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <!--banner-->
+    <div id="carouselExampleCaptions" class="carousel slide">
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/assets/img/banner1.png" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="/assets/img/banner3.png" class="d-block w-100" alt="..." />
+            <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>Veja todos os nossos serviços disponíveis!</h5>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button type="button" class="btn btn-outline-light">
+                Ver Serviços
+              </button>
+            </div>
+          </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+          <img src="/assets/img/banner2.png" class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Agende sua consulta!</h3>
+              <div class="d-grid gap-2 col-10 mx-auto">
+                <button type="button" class="btn btn-outline-light">
+                  Agendar Consulta/Exame
+                </button>
+              </div>
+            </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+<!--cards infos-->
+<section class="info-cards-section">
+  <div class="info-cards-row">
+    <article class="info-card">
+      <h3>Atendimento Digital</h3>
+      <p>Agende consultas e tire dúvidas online ou por WhatsApp</p>
+      <a href="https://wa.me/11999999999" target="_blank" rel="noopener" class="whatsapp-link">📞 WhatsApp: 11 99999-9999</a>
+    </article>
+    <article class="info-card">
+      <h3>Profissionais Qualificados</h3>
+      <p>Equipe de profissionais experientes e dedicados ao seu bem-estar</p>
+    </article>
+    <article class="info-card">
+      <h3>Planos e Convênios</h3>
+      <p>Oferecemos cobertura ampla e atendimento humanizado para sua família</p>
+    </article>
+  </div>
+</section>
+
+
+<!--info clínica-->
+<section class="clinic-info-section">
+  <div class="clinic-info-container">
+    <div class="clinic-image-col">
+      <img src="/assets/img/card1.png" alt="Clínica BioHealth" class="clinic-image" />
+    </div>
+    <div class="clinic-text-col">
+      <h3>Conheça a Clínica BioHealth</h3>
+      <p>
+        Nossa clínica é referência em atendimento humanizado e tecnologia de ponta, com equipe de profissionais especializados em diversas áreas da saúde.
+      </p>
+      <ul>
+        <li><strong>Endereço:</strong> Av. Saúde, 123 - Centro, São Paulo, SP</li>
+        <li><strong>Telefone:</strong> (11) 4000-1234</li>
+        <li><strong>Horário de Atendimento:</strong> Seg-Sex 8h–19h | Sáb 8h–13h</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+    <!--footer-->
+    <div id="footer-placeholder"></div>
+  </body>
+
+  <script>
+    async function loadFragment(containerId, fragmentPath, errorMessage) {
+      try {
+        const resp = await fetch(fragmentPath);
+        if (!resp.ok) throw new Error(`Erro ${resp.status}`);
+        const html = await resp.text();
+        document.getElementById(containerId).innerHTML = html;
+      } catch (error) {
+        console.error(errorMessage, error);
+        document.getElementById(containerId).innerHTML =
+          `<div class="alert alert-danger p-2 m-0">Falha ao carregar ${containerId.replace("-placeholder", "")}.</div>`;
+      }
+    }
+
+    loadFragment(
+      "navbar-placeholder",
+      "fragments/navbar.html",
+      "Não foi possível carregar navbar:",
+    );
+    loadFragment(
+      "footer-placeholder",
+      "fragments/footer.html",
+      "Não foi possível carregar footer:",
+    );
+  </script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"
+  ></script>
+</html>
