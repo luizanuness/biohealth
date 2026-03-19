@@ -1,0 +1,321 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioHealth</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <link rel="stylesheet" href="/assets/css/lista.css" />
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="banner-topo">
+      <img src="/assets/img/headerlista.png" alt="Serviços da clínica" />
+    </div>
+
+    <div class="container servicos-page">
+      <div class="text-center mb-4">
+        <h1>Nossos Serviços</h1>
+        <p>Escolha entre consultas médicas ou exames disponíveis</p>
+      </div>
+
+      <div class="text-center mb-5">
+        <button class="btn-toggle active" onclick="showSection('consultas')">
+          Consultas
+        </button>
+        <button class="btn-toggle" onclick="showSection('exames')">
+          Exames
+        </button>
+        <button class="btn-toggle" onclick="showSection('cirurgias')">
+          Cirurgias
+        </button>
+      </div>
+
+      <!-- consultas -->
+      <div id="consultas" class="row g-4">
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🩺</div>
+            <h5>Clínico Geral</h5>
+            <p>Avaliação completa da saúde</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">❤️</div>
+            <h5>Cardiologia</h5>
+            <p>Diagnóstico e prevenção cardíaca</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🧠</div>
+            <h5>Neurologia</h5>
+            <p>Saúde do cérebro e sistema nervoso</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🦴</div>
+            <h5>Ortopedia</h5>
+            <p>Tratamento de ossos e articulações</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🫁</div>
+            <h5>Pneumologia</h5>
+            <p>Cuidados com o sistema respiratório</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🍽️</div>
+            <h5>Gastroenterologia</h5>
+            <p>Saúde do sistema digestivo</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🧪</div>
+            <h5>Endocrinologia</h5>
+            <p>Controle hormonal e metabólico</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">👩</div>
+            <h5>Ginecologia e Obstetrícia</h5>
+            <p>Saúde da mulher e da maternidade</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🧴</div>
+            <h5>Dermatologia</h5>
+            <p>Cuidados com a pele</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🧑‍⚕️</div>
+            <h5>Urologia</h5>
+            <p>Cuidados com o sistema urinário</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🧠</div>
+            <h5>Psiquiatria</h5>
+            <p>Saúde mental e psiquiatra</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- exames -->
+      <div id="exames" class="row g-4 hidden">
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Cardiologia</span>
+            <div class="icon">❤️</div>
+            <h5>Exames Cardíacos</h5>
+            <p>ECG, Ecocardiograma, Holter, MAPA e teste ergométrico</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Laboratório</span>
+            <div class="icon">🧪</div>
+            <h5>Exames de sangue e urina</h5>
+            <p>
+              Hemograma, Glicemia, Colesterol, Triglicerídeos, Exames Hormonais,
+              Ureia e Creatinina
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Imagem</span>
+            <div class="icon">🧲</div>
+            <h5>Ressonância Magnética</h5>
+            <p>
+              Ressonância do Crânio, Ressonâncias da Coluna, Ressonância do
+              Abdômen, Ressonância de Articulações
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Imagem</span>
+            <div class="icon">📸</div>
+            <h5>Tomografia</h5>
+            <p>
+              Tomografia do Cranio, Tomografia do Abdômen, Tomografia de
+              Articulações, Tomografia de Tórax, Tomografia de Coluna
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Ultrassom</span>
+            <div class="icon">🖥️</div>
+            <h5>Ultrassonografia Geral</h5>
+            <p>
+              Ultrassom Abdominal, Ultrassom Pélvico, Ultrassom de Tireoide,
+              Ultrassom de Mama, Ultrassom de Partes Moles, Ultrassom de rins e
+              vias urinárias, Ultrassom de prostata
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Ultrassom</span>
+            <div class="icon">🖥️</div>
+            <h5>Ultrassonografia de Articulações</h5>
+            <p>
+              Ultrassom de Ombro, Ultrassom de Cotovelo, Ultrassom de Punho,
+              Ultrassom de Quadril, Ultrassom de Joelho, Ultrassom de Tornozelo
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Ultrassom</span>
+            <div class="icon">🖥️</div>
+            <h5>Ultrassonografia com Doppler</h5>
+            <p>Ultrassom com Doppler Venoso e Arterial</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Digestivo</span>
+            <div class="icon">📷</div>
+            <h5>Endoscopia</h5>
+            <p>Endoscopia Digestiva Alta, Colonoscopia, Retossigmoidoscopia</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Respiratório</span>
+            <div class="icon">📷</div>
+            <h5>Exames Respiratórios</h5>
+            <p>espirometria, teste de função pulmonar</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <span class="tag">Ginecológico</span>
+            <div class="icon">👩</div>
+            <h5>Exames Ginecológicos</h5>
+            <p>
+              Papanicolau, Colposcopia, Biópsia, Ultrassom Transvaginal,
+              ultrassom obstétrico e morfológico, Mamografia
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!--cirurgias-->
+      <div id="cirurgias" class="row g-4 hidden">
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🔪</div>
+            <h5>Pequenas Cirurgias</h5>
+            <p>Retirada de cistos, pintas e lesões</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">🦴</div>
+            <h5>Cirurgias Ortopédicas</h5>
+            <p>Tratamento de lesões e articulações</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card h-100 text-center">
+            <div class="icon">👩</div>
+            <h5>Procedimentos Ginecológicos</h5>
+            <p>Intervenções minimamente invasivas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="/navegacao/agendamento.html" class="btn-agendar-fixo">
+      Agendar Atendimento
+    </a>
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+      function showSection(tipo) {
+        const consultas = document.getElementById("consultas");
+        const exames = document.getElementById("exames");
+        const cirurgias = document.getElementById("cirurgias");
+
+        const buttons = document.querySelectorAll(".btn-toggle");
+
+        buttons.forEach((btn) => btn.classList.remove("active"));
+
+        consultas.classList.add("hidden");
+        exames.classList.add("hidden");
+        cirurgias.classList.add("hidden");
+
+        if (tipo === "consultas") {
+          consultas.classList.remove("hidden");
+          buttons[0].classList.add("active");
+        } else if (tipo === "exames") {
+          exames.classList.remove("hidden");
+          buttons[1].classList.add("active");
+        } else {
+          cirurgias.classList.remove("hidden");
+          buttons[2].classList.add("active");
+        }
+      }
+
+      async function loadFragment(containerId, fragmentPath) {
+        try {
+          const resp = await fetch(fragmentPath);
+          const html = await resp.text();
+          document.getElementById(containerId).innerHTML = html;
+        } catch {
+          document.getElementById(containerId).innerHTML =
+            "<p>Erro ao carregar</p>";
+        }
+      }
+
+      loadFragment("navbar-placeholder", "/fragments/navbar.html");
+      loadFragment("footer-placeholder", "/fragments/footer.html");
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

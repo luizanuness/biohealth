@@ -1,0 +1,159 @@
+/* customizacao navbar */
+.navbar-logo {
+  width: 200px;
+  height: auto;
+  margin-right: 0.4rem;
+}
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 0.5rem;
+}
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+}
+.navbar-nav .nav-link {
+  font-weight: 700;
+  color: #000000;
+}
+.navbar-nav .nav-link:hover {
+  color: #75b3d6 !important;
+}
+.navbar-nav .nav-link.active {
+  color: #75b3d6 !important;
+  border-bottom: 2px solid #75b3d6;
+  padding-bottom: 0.15rem;
+}
+
+/* Navbar overlay */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 8px 20px rgb(255, 255, 255),
+    0 4px 12px rgb(255, 255, 255);
+}
+.container-fluid {
+  position: relative;
+  z-index: 20;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.banner-topo {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.banner-topo img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.servicos-page {
+  padding: 40px 20px;
+}
+
+.btn-toggle {
+  border: none;
+  padding: 10px 22px;
+  margin: 5px;
+  border-radius: 30px;
+  background: #e4ecf7;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-toggle:hover {
+  transform: scale(1.05);
+}
+
+.btn-toggle.active {
+  background: linear-gradient(90deg, #1b73d4, #3da2ff);
+  color: white;
+}
+
+/* cards */
+.service-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  height: 100%;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 30px #c3defa;
+}
+
+.icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.tag {
+  font-size: 12px;
+  background: #eaf4ff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.btn-agendar-fixo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  background: linear-gradient(90deg, #1b73d4, #3da2ff);
+  color: white;
+
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+
+  transition: 0.3s;
+}
+
+.btn-agendar-fixo:hover {
+  background: linear-gradient(90deg, #1259aa, #2d8be0);
+  transform: translateY(-2px);
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+footer {
+  background: #ffffff;
+  color: #000000;
+  text-align: center;
+  padding: 1rem 0;
+}

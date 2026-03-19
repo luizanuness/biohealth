@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioHealth</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <link rel="stylesheet" href="/assets/css/pct.css" />
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container mt-5">
+      <!-- ================= LOGIN ================= -->
+      <div class="row align-items-center" id="loginBox">
+        <div class="col-md-6">
+          <h2>Login</h2>
+
+          <form>
+            <div class="mb-3">
+              <label>Email</label>
+              <input type="email" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <label>Senha</label>
+              <input type="password" class="form-control" />
+            </div>
+
+            <div class="entrar-actions"> <a href="/paciente/areapct.html" class="entrar-more-btn">Entrar</a> </div> </form>
+          </form>
+
+          <p class="mt-3">
+            Não tem conta?
+            <span class="switch-link" onclick="toggleForms()">Cadastre-se</span>
+          </p>
+        </div>
+
+        <div class="col-md-6 text-center">
+          <img src="/assets/img/card2.png" class="img-fluid form-img" />
+        </div>
+      </div>
+
+      <!-- ================= CADASTRO ================= -->
+      <div class="row align-items-center hidden" id="registerBox">
+        <!-- IMAGEM -->
+        <div class="col-md-6 text-center">
+          <img src="/assets/img/card3.png" class="img-fluid form-img" />
+        </div>
+
+        <!-- FORM -->
+        <div class="col-md-6">
+          <h2>Cadastro de Paciente</h2>
+
+          <form id="formCadastro">
+            <!-- STEP 1 -->
+            <div id="step1">
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <label>Nome Completo</label>
+                  <input type="text" class="form-control" required />
+                </div>
+
+                <div class="col-md-6 mb-2">
+                  <label>Data de Nascimento</label>
+                  <input
+                    type="date"
+                    id="dataNascimento"
+                    class="form-control"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div id="responsavelBox" class="mb-2 hidden">
+                <label>Nome do Responsável</label>
+                <input type="text" class="form-control" />
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <label>CPF</label>
+                  <input type="text" class="form-control" required />
+                </div>
+
+                <div class="col-md-6 mb-2">
+                  <label>Gênero</label>
+                  <select class="form-control" required>
+                    <option value="">Selecione</option>
+                    <option>Masculino</option>
+                    <option>Feminino</option>
+                    <option>Outro</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <label>Telefone</label>
+                  <input type="text" class="form-control" required />
+                </div>
+
+                <div class="col-md-6 mb-2">
+                  <label>Telefone Secundário</label>
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+
+              <div class="mb-2">
+                <label>Email</label>
+                <input type="email" class="form-control" required />
+              </div>
+
+              <div class="mb-2">
+                <label>Senha</label>
+                <input type="password" class="form-control" required />
+              </div>
+
+              <h5 class="mt-3">Endereço</h5>
+
+              <div class="row">
+                <div class="col-md-8 mb-2">
+                  <label>Rua</label>
+                  <input type="text" class="form-control" required />
+                </div>
+
+                <div class="col-md-4 mb-2">
+                  <label>CEP</label>
+                  <input type="text" class="form-control" required />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <label>Bairro</label>
+                  <input type="text" class="form-control" required />
+                </div>
+
+                <div class="col-md-6 mb-2">
+                  <label>Cidade</label>
+                  <input type="text" class="form-control" required />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-primary w-100 mt-3"
+                onclick="nextStep()"
+              >
+                Continuar Cadastro
+              </button>
+            </div>
+
+            <!-- STEP 2 -->
+            <div id="step2" class="hidden">
+              <h5>Informações de Saúde</h5>
+
+              <!-- Alergia -->
+              <div class="mb-2">
+                <label>Possui alergia?</label>
+                <select
+                  class="form-control"
+                  onchange="toggleField(this, 'alergiaCampo')"
+                  required
+                >
+                  <option value="">Selecione</option>
+                  <option>Não</option>
+                  <option>Sim</option>
+                </select>
+              </div>
+
+              <div id="alergiaCampo" class="hidden mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Qual alergia?"
+                />
+              </div>
+
+              <!-- Medicamento -->
+              <div class="mb-2">
+                <label>Usa medicamento?</label>
+                <select
+                  class="form-control"
+                  onchange="toggleField(this, 'medicamentoCampo')"
+                  required
+                >
+                  <option value="">Selecione</option>
+                  <option>Não</option>
+                  <option>Sim</option>
+                </select>
+              </div>
+
+              <div id="medicamentoCampo" class="hidden mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Qual medicamento?"
+                />
+              </div>
+
+              <!-- Doença -->
+              <div class="mb-2">
+                <label>Doença pré-existente?</label>
+                <select
+                  class="form-control"
+                  onchange="toggleField(this, 'doencaCampo')"
+                  required
+                >
+                  <option value="">Selecione</option>
+                  <option>Não</option>
+                  <option>Sim</option>
+                </select>
+              </div>
+
+              <div id="doencaCampo" class="hidden mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Qual doença?"
+                />
+              </div>
+
+              <!-- Convênio -->
+              <div class="mb-2">
+                <label>Possui convênio?</label>
+                <select
+                  class="form-control"
+                  onchange="toggleField(this, 'convenioCampo')"
+                  required
+                >
+                  <option value="">Selecione</option>
+                  <option>Não</option>
+                  <option>Sim</option>
+                </select>
+              </div>
+
+              <div id="convenioCampo" class="hidden mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Qual convênio?"
+                />
+              </div>
+
+              <div class="d-flex gap-2 mt-3">
+                <button
+                  type="button"
+                  class="btn btn-secondary w-50"
+                  onclick="prevStep()"
+                >
+                  Voltar
+                </button>
+                <button type="submit" class="btn btn-success w-50">
+                  Finalizar
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <p class="mt-3">
+            Já tem conta?
+            <span class="switch-link" onclick="toggleForms()">Entrar</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--footer-->
+    <div id="footer-placeholder"></div>
+  </body>
+
+  <script>
+    //funções para navegação entre etapas do cadastro
+    function nextStep() {
+      document.getElementById("step1").classList.add("hidden");
+      document.getElementById("step2").classList.remove("hidden");
+    }
+
+    function prevStep() {
+      document.getElementById("step2").classList.add("hidden");
+      document.getElementById("step1").classList.remove("hidden");
+    }
+
+    // Função para mostrar/ocultar campo cad
+    function toggleForms() {
+      const login = document.getElementById("loginBox");
+      const register = document.getElementById("registerBox");
+
+      if (login.classList.contains("hidden")) {
+        login.classList.remove("hidden");
+        register.classList.add("hidden");
+      } else {
+        login.classList.add("hidden");
+        register.classList.remove("hidden");
+      }
+    }
+
+    // Mostrar campos condicionais
+    function toggleField(select, fieldId) {
+      const field = document.getElementById(fieldId);
+
+      if (select.value === "Sim") {
+        field.classList.remove("hidden");
+        field.querySelector("input").setAttribute("required", true);
+      } else {
+        field.classList.add("hidden");
+        field.querySelector("input").removeAttribute("required");
+      }
+    }
+
+    // validar idade (menor de 18)
+    document
+      .getElementById("dataNascimento")
+      .addEventListener("change", function () {
+        const data = new Date(this.value);
+        const hoje = new Date();
+
+        let idade = hoje.getFullYear() - data.getFullYear();
+        const m = hoje.getMonth() - data.getMonth();
+
+        if (m < 0 || (m === 0 && hoje.getDate() < data.getDate())) {
+          idade--;
+        }
+
+        const responsavelBox = document.getElementById("responsavelBox");
+
+        if (idade < 18) {
+          responsavelBox.classList.remove("hidden");
+          responsavelBox.querySelector("input").setAttribute("required", true);
+        } else {
+          responsavelBox.classList.add("hidden");
+          responsavelBox.querySelector("input").removeAttribute("required");
+        }
+      });
+
+    async function loadFragment(containerId, fragmentPath, errorMessage) {
+      try {
+        const resp = await fetch(fragmentPath);
+        if (!resp.ok) throw new Error(`Erro ${resp.status}`);
+        const html = await resp.text();
+        document.getElementById(containerId).innerHTML = html;
+      } catch (error) {
+        console.error(errorMessage, error);
+        document.getElementById(containerId).innerHTML =
+          `<div class="alert alert-danger p-2 m-0">Falha ao carregar ${containerId.replace("-placeholder", "")}.</div>`;
+      }
+    }
+
+    loadFragment(
+      "navbar-placeholder",
+      "/fragments/navbar.html",
+      "Não foi possível carregar navbar:",
+    );
+    loadFragment(
+      "footer-placeholder",
+      "/fragments/footer.html",
+      "Não foi possível carregar footer:",
+    );
+  </script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"
+  ></script>
+</html>

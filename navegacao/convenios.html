@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioHealth</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <link rel="stylesheet" href="/assets/css/convenio.css" />
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- container convenios -->
+    <div class="container convenios-page">
+      <div class="text-center mb-5">
+        <h1>Convênios Aceitos</h1>
+        <p class="subtitle">
+          Trabalhamos com os melhores convênios para facilitar o seu atendimento
+        </p>
+      </div>
+
+      <!-- lista convenios -->
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-3 col-6">
+          <div class="convenio-card">Unimed</div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="convenio-card">Amil</div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="convenio-card">Bradesco Saúde</div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="convenio-card">SulAmérica</div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="convenio-card">NotreDame</div>
+        </div>
+
+        <div class="col-md-3 col-6">
+          <div class="convenio-card">Hapvida</div>
+        </div>
+      </div>
+
+      <div class="full-width-section mt-5">
+      <div class="bannerbio-container mt-5">
+        <img
+          src="/assets/img/bannerbio.png"
+          alt="Clínica BioHealth"
+          class="clinic-image"
+        />
+      </div>
+    </div>
+
+    <!-- informações importantes -->
+    <div class="full-width-section mt-5">
+      <div class="info-box">
+        <h4 class="mb-4">Informações Importantes</h4>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="info-card-box">
+              <div class="icon">🪪</div>
+              <h6>Documentos obrigatórios</h6>
+              <p>
+                Apresente documento com foto e carteirinha do convênio no
+                atendimento.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-card-box">
+              <div class="icon">📄</div>
+              <h6>Guia médica</h6>
+              <p>Alguns atendimentos exigem guia ou encaminhamento médico.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-card-box">
+              <div class="icon">💳</div>
+              <h6>Reembolso</h6>
+              <p>
+                O pagamento pode ser feito particular e solicitado reembolso ao
+                convênio.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-card-box">
+              <div class="icon">ℹ️</div>
+              <h6>Cobertura do plano</h6>
+              <p>
+                Verifique previamente com seu convênio os serviços cobertos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- cards tipos  atendimentos -->
+    <div class="mt-5">
+      <h4 style="text-align: center">Tipos de Atendimento</h4>
+      <div class="info-cards-row">
+        <article class="info-card">
+          <p>Consultas médicas</p>
+        </article>
+        <article class="info-card">
+          <p>Exames laboratoriais</p>
+        </article>
+        <article class="info-card">
+          <p>Check-ups preventivos</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- contato -->
+    <div class="cta-box mt-5 text-center">
+      <h4>Não encontrou seu convênio?</h4>
+      <p>Entre em contato com nossa equipe para verificar disponibilidade.</p>
+      <a href="#" class="btn btn-primary">Falar com a clínica</a>
+    </div>
+
+    <!--footer-->
+    <div id="footer-placeholder"></div>
+  </body>
+
+  <script>
+function showSection(tipo) {
+  const consultas = document.getElementById("consultas");
+  const exames = document.getElementById("exames");
+  const buttons = document.querySelectorAll(".btn-toggle");
+
+  buttons.forEach(btn => btn.classList.remove("active"));
+
+  if (tipo === "consultas") {
+    consultas.classList.remove("hidden");
+    exames.classList.add("hidden");
+    buttons[0].classList.add("active");
+  } else {
+    exames.classList.remove("hidden");
+    consultas.classList.add("hidden");
+    buttons[1].classList.add("active");
+  }
+}
+
+    async function loadFragment(containerId, fragmentPath, errorMessage) {
+      try {
+        const resp = await fetch(fragmentPath);
+        if (!resp.ok) throw new Error(`Erro ${resp.status}`);
+        const html = await resp.text();
+        document.getElementById(containerId).innerHTML = html;
+      } catch (error) {
+        console.error(errorMessage, error);
+        document.getElementById(containerId).innerHTML =
+          `<div class="alert alert-danger p-2 m-0">Falha ao carregar ${containerId.replace("-placeholder", "")}.</div>`;
+      }
+    }
+
+    loadFragment(
+      "navbar-placeholder",
+      "/fragments/navbar.html",
+      "Não foi possível carregar navbar:",
+    );
+    loadFragment(
+      "footer-placeholder",
+      "/fragments/footer.html",
+      "Não foi possível carregar footer:",
+    );
+  </script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"
+  ></script>
+</html>
