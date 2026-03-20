@@ -10,17 +10,142 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/assets/css/historico.css" />
+    <link rel="stylesheet" href="/assets/css/pct/historico.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
+
+    <div class="container conteudo-principal">
+      <div class="alerta-agendamento">
+        <i class="bi bi-bell icone"></i>
+        <span>
+          Você possui uma <strong>consulta</strong> em
+          <strong>25/03 às 14:00</strong>
+        </span>
+        <button class="learn-more-btn">Ver detalhes</button>
+      </div>
+      <div class="filtros">
+        <button class="learn-more-btn ativo" onclick="filtrar('todos', event)">
+          <i class="bi bi-grid"></i> Todos
+        </button>
+        <button class="learn-more-btn" onclick="filtrar('consulta', event)">
+          <i class="bi bi-person-heart"></i> Consultas
+        </button>
+        <button class="learn-more-btn" onclick="filtrar('exame', event)">
+          <i class="bi bi-clipboard-pulse"></i> Exames
+        </button>
+      </div>
+
+      <div class="card perfil-historico">
+        <h2><i class="bi bi-clock-history icone"></i> Histórico do Paciente</h2>
+
+        <table class="tabela-historico">
+          <thead>
+            <tr>
+              <th><i class="bi bi-tag icone"></i> Tipo</th>
+              <th>
+                <i class="bi bi-file-earmark-medical icone"></i> Procedimento
+              </th>
+              <th><i class="bi bi-calendar icone"></i> Data</th>
+              <th><i class="bi bi-info-circle icone"></i> Status</th>
+              <th><i class="bi bi-search icone"></i> Resultados</th>
+              <th><i class="bi bi-person icone"></i> Nome do Profissional</th>
+              <th><i class="bi bi-journal-text icone"></i> Prontuário</th>
+            </tr>
+          </thead>
+
+          <tbody id="tabela-body">
+            <tr data-tipo="exame">
+              <td class="tipo exame">Exame</td>
+              <td>Hemograma completo</td>
+              <td>10/03/2026</td>
+              <td><span class="status finalizado">Finalizado</span></td>
+              <td>
+                <button class="resultado-btn">Ver resultado</button>
+              </td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+
+            <tr data-tipo="exame">
+              <td class="tipo exame">Exame</td>
+              <td>Raio-X</td>
+              <td>15/03/2026</td>
+              <td><span class="status agendado">Em análise</span></td>
+              <td>
+                <span class="texto-suave"> Resultado em até 3 dias </span>
+              </td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr data-tipo="consulta">
+              <td class="tipo consulta">Consulta</td>
+              <td>Clínico Geral</td>
+              <td>05/03/2026</td>
+              <td><span class="status finalizado">Finalizado</span></td>
+              <td>-</td>
+              <td>
+                <span class="texto-suave">Dr. João Pereira</span>
+              </td>
+              <td>
+                <button class="learn-more-btn">
+                  <i class="bi bi-journal-text"></i> Ver prontuário
+                </button>
+              </td>
+            </tr>
+
+            <tr data-tipo="consulta">
+              <td class="tipo consulta">Consulta</td>
+              <td>Cardiologista</td>
+              <td>02/03/2026</td>
+              <td><span class="status retorno">Aguardando retorno</span></td>
+              <td>-</td>
+              <td>
+                <span class="texto-suave">Dra. Ana Souza</span>
+              </td>
+              <td>
+                <button class="learn-more-btn">
+                  <i class="bi bi-journal-text"></i> Ver prontuário
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <a href="/paciente/areapct.html" class="btn-flutuante">
+      <i class="bi bi-person-circle"></i>
+    </a>
 
     <!--footer-->
     <div id="footer-placeholder"></div>
   </body>
 
   <script>
+    function filtrar(tipo, event) {
+      const linhas = document.querySelectorAll("#tabela-body tr");
+      const botoes = document.querySelectorAll(".filtros button");
+
+      botoes.forEach((btn) => btn.classList.remove("ativo"));
+      event.currentTarget.classList.add("ativo");
+
+      linhas.forEach((linha) => {
+        const tipoLinha = linha.getAttribute("data-tipo");
+
+        if (tipo === "todos" || tipoLinha === tipo) {
+          linha.style.display = "";
+        } else {
+          linha.style.display = "none";
+        }
+      });
+    }
+
     async function loadFragment(containerId, fragmentPath, errorMessage) {
       try {
         const resp = await fetch(fragmentPath);

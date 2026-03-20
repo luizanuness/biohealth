@@ -1,4 +1,22 @@
-/* customizacao navbar */
+/*fundo*/
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background-image: url(/assets/img/background.jpg);
+}
+
+.container-form {
+  flex: 1;
+}
+
+/* navbar */
 .navbar-logo {
   width: 200px;
   height: auto;
@@ -27,12 +45,6 @@
   padding-bottom: 0.15rem;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-image: url(/assets/img/background.jpg);
-}
-
 /* esconder elementos */
 .hidden {
   display: none;
@@ -50,9 +62,12 @@ body {
 }
 
 .container-form {
-  margin-top: 50px;
+  margin: 50px auto;
+  padding: 0 15px;
+  max-width: 1100px;
 }
 
+/*entrar*/
 .entrar-actions {
   margin-top: 1rem;
   text-align: center;
@@ -165,30 +180,49 @@ body {
   padding: 0;
 }
 
+/*formulário*/
+
+.form-group {
+  margin-bottom: 12px;
+}
+
 .form-control {
-  padding: 6px 10px;
+  padding: 10px 12px;
   font-size: 14px;
   border-radius: 8px;
 }
 
 .form-img {
-  width: 400px;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-#loginBox .col-md-6:first-child {
-  padding: 25px 20px 25px 25px;
+/*agrupamento de elementos*/
+#loginBox form,
+#registerBox form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
+#loginBox,
+#registerBox {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+#loginBox .col-md-6:first-child,
 #registerBox .col-md-6:last-child {
-  padding: 25px 25px 25px 20px;
+  padding: 30px 25px;
 }
 
 label {
   font-size: 13px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  display: block;
 }
 
 footer {
@@ -196,4 +230,40 @@ footer {
   color: #000000;
   text-align: center;
   padding: 1rem 0;
+}
+#footer-placeholder {
+  margin-top: 40px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  #loginBox .row,
+  #registerBox .row {
+    flex-direction: column;
+  }
+
+  .form-img {
+    display: none; /* remove imagem no mobile */
+  }
+
+  #loginBox .col-md-6,
+  #registerBox .col-md-6 {
+    width: 100%;
+  }
+
+  .container-form {
+    margin: 30px auto;
+  }
+
+  .form-control {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .btn-primary,
+  .btn-success,
+  .btn-secondary,
+  .entrar-more-btn {
+    width: 100%;
+  }
 }
