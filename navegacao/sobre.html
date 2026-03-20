@@ -1,0 +1,153 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioHealth</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+  <link rel="stylesheet" href="/assets/css/sobre.css" />
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="img-sobre">
+      <img src="/assets/img/headersobre.png" alt="Clínica BioHealth" />
+    </div>
+
+    <div class="container sobre-page">
+      <div class="row align-items-center mt-5">
+        <div class="col-md-4 text-center">
+          <img
+            src="/assets/img/logo_biohealth_bluetext.png"
+            class="logo-clinica"
+            alt="Logo BioHealth"
+          />
+        </div>
+
+        <!-- TEXTO -->
+        <div class="col-md-8">
+          <h2>Sobre a BioHealth</h2>
+          <p>
+            A BioHealth é uma clínica moderna dedicada ao cuidado integral da
+            saúde. Oferecemos atendimento humanizado, tecnologia de ponta e uma
+            equipe especializada para garantir o melhor diagnóstico e tratamento
+            aos nossos pacientes.
+          </p>
+
+          <p>
+            Nosso compromisso é proporcionar bem-estar, segurança e qualidade em
+            todos os serviços, desde consultas até exames e procedimentos
+            médicos.
+          </p>
+        </div>
+      </div>
+
+      <!-- contato + horarios -->
+      <div class="row mt-5 g-4">
+        <!-- contato -->
+        <div class="col-md-4">
+          <div class="info-card-modern">
+            <div class="icon-box">
+              <i class="bi bi-chat-dots"></i>
+            </div>
+            <h5>Fale Conosco</h5>
+
+            <p class="contact-item">
+              <i class="bi bi-whatsapp"></i> (11) 99999-9999
+            </p>
+
+            <p class="contact-item">
+              <i class="bi bi-telephone"></i> (11) 4000-0000
+            </p>
+
+            <a href="#" class="btn-contato">Chamar no WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- horarios -->
+        <div class="col-md-4">
+          <div class="info-card-modern">
+            <div class="icon-box">
+              <i class="bi bi-clock"></i>
+            </div>
+            <h5>Horários</h5>
+
+            <ul class="horarios-list">
+              <li><span>Seg - Sex</span> <strong>08h - 18h</strong></li>
+              <li><span>Sábado</span> <strong>08h - 12h</strong></li>
+              <li><span>Domingo</span> <strong>Fechado</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- endereco -->
+        <div class="col-md-4">
+          <div class="info-card-modern">
+            <div class="icon-box">
+              <i class="bi bi-geo-alt"></i>
+            </div>
+            <h5>Localização</h5>
+
+            <p>Rua Exemplo, 123</p>
+            <p>Centro - Sorocaba/SP</p>
+
+            <a href="#" class="btn-contato">Ver no mapa</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- mapa -->
+      <div class="map-container mt-5">
+        <iframe
+          src="https://www.google.com/maps?q=Sorocaba&output=embed"
+          allowfullscreen=""
+          loading="lazy"
+        >
+        </iframe>
+      </div>
+    </div>
+    <!--footer-->
+    <div id="footer-placeholder"></div>
+  </body>
+
+  <script>
+    async function loadFragment(containerId, fragmentPath, errorMessage) {
+      try {
+        const resp = await fetch(fragmentPath);
+        if (!resp.ok) throw new Error(`Erro ${resp.status}`);
+        const html = await resp.text();
+        document.getElementById(containerId).innerHTML = html;
+      } catch (error) {
+        console.error(errorMessage, error);
+        document.getElementById(containerId).innerHTML =
+          `<div class="alert alert-danger p-2 m-0">Falha ao carregar ${containerId.replace("-placeholder", "")}.</div>`;
+      }
+    }
+
+    loadFragment(
+      "navbar-placeholder",
+      "/fragments/navbar.html",
+      "Não foi possível carregar navbar:",
+    );
+    loadFragment(
+      "footer-placeholder",
+      "/fragments/footer.html",
+      "Não foi possível carregar footer:",
+    );
+  </script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"
+  ></script>
+</html>
