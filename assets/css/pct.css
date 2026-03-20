@@ -30,7 +30,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f6f7fb;
+  background-image: url(/assets/img/background.jpg);
 }
 
 /* esconder elementos */

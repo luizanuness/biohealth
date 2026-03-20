@@ -1,0 +1,379 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioHealth</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+  <link rel="stylesheet" href="/assets/css/agendamento.css" />
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="agendamento-topo">
+      <div class="container text-center">
+        <h1>Agende seu atendimento</h1>
+        <p>Rápido, simples e totalmente online</p>
+      </div>
+    </div>
+
+    <!--avisos-->
+    <div class="container mt-4">
+      <div class="avisos-box">
+        <h5 class="mb-3">⚠️ Avisos importantes</h5>
+
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="aviso-card">
+              <div class="icon">📄</div>
+              <h6>Guia médica obrigatória</h6>
+              <p>
+                Para realização de exames, é necessário apresentar guia médica
+                válida no dia do atendimento.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="aviso-card">
+              <div class="icon">💳</div>
+              <h6>Convênios</h6>
+              <p>
+                Tenha em mãos sua carteirinha e documento com foto. A cobertura
+                pode variar conforme o plano.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="aviso-card">
+              <div class="icon">⏰</div>
+              <h6>Chegue com antecedência</h6>
+              <p>
+                Recomendamos chegar com pelo menos 15 minutos de antecedência
+                para evitar atrasos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container agendamento-page">
+      <div class="row align-items-center">
+        <!--formulario-->
+
+        <div class="col-lg-12">
+          <div class="form-box">
+            <h4 class="text-center mb-4">Preencha seus dados:</h4>
+
+            <form id="formAgendamento">
+              <div class="step">
+                <label>O que você deseja agendar?</label>
+                <select class="form-control" id="tipo">
+                  <option value="">Selecione</option>
+                  <option value="consulta">Consulta</option>
+                  <option value="exame">Exame</option>
+                </select>
+              </div>
+
+              <!-- consulta -->
+              <div class="step hidden" id="tipoConsulta">
+                <label>Tipo de consulta</label>
+                <select class="form-control">
+                  <option>Primeira consulta</option>
+                  <option>Retorno</option>
+                </select>
+              </div>
+
+              <!-- exame -->
+              <div class="step hidden" id="tipoExame">
+                <label>Tipo de exame</label>
+                <select class="form-control" id="categoriaExame">
+                  <option value="">Selecione</option>
+                </select>
+
+                <label class="mt-3">Exame</label>
+                <select class="form-control" id="exameSelect">
+                  <option value="">Selecione um tipo primeiro</option>
+                </select>
+              </div>
+
+              <div class="step hidden" id="dataStep">
+                <label>Escolha a data</label>
+                <input type="date" class="form-control" id="data" />
+              </div>
+
+              <div class="step hidden" id="horaStep">
+                <label>Escolha o horário</label>
+                <select class="form-control" id="hora">
+                  <option>08:00</option>
+                  <option>10:00</option>
+                  <option>14:00</option>
+                  <option>16:00</option>
+                </select>
+              </div>
+
+              <div class="step hidden" id="pagamentoStep">
+                <label>Forma de pagamento</label>
+                <select class="form-control" id="pagamento">
+                  <option value="">Selecione</option>
+                  <option value="convenio">Convênio</option>
+                  <option value="particular">Particular</option>
+                </select>
+              </div>
+
+              <!-- convenios -->
+              <div class="step hidden" id="convenioBox">
+                <label>Convênio</label>
+                <select class="form-control">
+                  <option>Unimed</option>
+                  <option>Amil</option>
+                  <option>Bradesco Saúde</option>
+                  <option>SulAmérica</option>
+                  <option>NotreDame</option>
+                  <option>Hapvida</option>
+                </select>
+
+                <label class="mt-2">Número da carteirinha</label>
+                <input type="text" class="form-control" />
+              </div>
+
+              <button type="submit" class="btn-agendar mt-4">
+                Confirmar Agendamento
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- popup -->
+    <div class="popup hidden" id="popupConfirmacao">
+      <div class="popup-box">
+        <h4>Agendamento realizado!</h4>
+        <p id="resumoAgendamento"></p>
+
+        <button onclick="fecharPopup()">OK</button>
+      </div>
+    </div>
+
+    <!--footer-->
+    <div id="footer-placeholder"></div>
+  </body>
+
+  <script>
+    const tipo = document.getElementById("tipo");
+
+    // EXAMES
+    const examesData = {
+      Cardíacos: [
+        "Ecocardiograma",
+        "Eletrocardiograma",
+        "Holter",
+        "MAPA",
+        "Teste ergométrico",
+      ],
+      Endoscopias: [
+        "Colonoscopia",
+        "Endoscopia Digestiva Alta",
+        "Retossigmoidoscopia",
+      ],
+      Ginecológicos: [
+        "Biópsia",
+        "Colposcopia",
+        "Mamografia",
+        "Papanicolau",
+        "Ultrassom Morfológico",
+        "Ultrassom Obstétrico",
+        "Ultrassom Transvaginal",
+      ],
+      Laboratório: [
+        "Colesterol",
+        "Creatinina",
+        "Exames hormonais",
+        "Glicemia",
+        "Hemograma completo",
+        "Triglicerídeos",
+        "Ureia",
+      ],
+      "Ressonância Magnética": [
+        "Ressonância da coluna cervical",
+        "Ressonância da coluna lombossacra",
+        "Ressonância da coluna torácica",
+        "Ressonância da mama",
+        "Ressonância da pelve",
+        "Ressonância da próstata",
+        "Ressonância do abdômen superior",
+        "Ressonância do coração",
+        "Ressonância do crânio",
+        "Ressonância do joelho",
+        "Ressonância do ombro",
+        "Ressonância do tórax",
+      ],
+      Respiratórios: [
+        "Prova de função pulmonar (espirometria)",
+        "Prova de função pulmonar com broncodilatador",
+      ],
+      Tomografia: [
+        "Tomografia da carótida",
+        "Tomografia da coluna cervical",
+        "Tomografia da coluna lombossacra",
+        "Tomografia da coluna torácica",
+        "Tomografia da face e seios paranasais",
+        "Tomografia de abdômen superior",
+        "Tomografia de crânio",
+        "Tomografia de pelve",
+        "Tomografia de tórax",
+      ],
+      "Ultrassom com Doppler": [
+        "Ultrassom com doppler arterial da carótida",
+        "Ultrassom com doppler arterial membros",
+        "Ultrassom com doppler obstétrico",
+        "Ultrassom com doppler venoso membros",
+      ],
+      "Ultrassom de Articulações": [
+        "Ultrassom de cotovelo",
+        "Ultrassom de joelho",
+        "Ultrassom de ombro",
+        "Ultrassom de punho",
+        "Ultrassom de quadril",
+        "Ultrassom de tornozelo",
+      ],
+      "Ultrassom Geral": [
+        "Ultrassom abdominal",
+        "Ultrassom da pelve",
+        "Ultrassom de mamas",
+        "Ultrassom de partes moles",
+        "Ultrassom de próstata",
+        "Ultrassom de rins e vias urinárias",
+        "Ultrassom de tireoide",
+      ],
+    };
+
+    const categoriaSelect = document.getElementById("categoriaExame");
+    const exameSelect = document.getElementById("exameSelect");
+
+    if (categoriaSelect) {
+      Object.keys(examesData)
+        .sort()
+        .forEach((categoria) => {
+          const option = document.createElement("option");
+          option.value = categoria;
+          option.textContent = categoria;
+          categoriaSelect.appendChild(option);
+        });
+
+      categoriaSelect.addEventListener("change", function () {
+        const categoria = this.value;
+
+        exameSelect.innerHTML = `<option value="">Selecione</option>`;
+
+        if (!categoria) return;
+
+        examesData[categoria].sort().forEach((exame) => {
+          const option = document.createElement("option");
+          option.value = exame;
+          option.textContent = exame;
+          exameSelect.appendChild(option);
+        });
+      });
+    }
+
+    // formulario
+    tipo.addEventListener("change", () => {
+      document
+        .getElementById("tipoConsulta")
+        .classList.toggle("hidden", tipo.value !== "consulta");
+
+      document
+        .getElementById("tipoExame")
+        .classList.toggle("hidden", tipo.value !== "exame");
+
+      document.getElementById("dataStep").classList.remove("hidden");
+      document.getElementById("horaStep").classList.remove("hidden");
+      document.getElementById("pagamentoStep").classList.remove("hidden");
+    });
+
+    document
+      .getElementById("pagamento")
+      .addEventListener("change", function () {
+        document
+          .getElementById("convenioBox")
+          .classList.toggle("hidden", this.value !== "convenio");
+      });
+
+    // pop up
+    document
+      .getElementById("formAgendamento")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const tipoValor = tipo.value;
+        const exame = document.getElementById("exameSelect").value;
+        const data = document.getElementById("data").value;
+        const hora = document.getElementById("hora").value;
+
+        const dadosAgendamento = {
+          tipo: tipoValor,
+          nome: exame || "Consulta",
+          data: data,
+          hora: hora,
+          preparo: "",
+        };
+
+        document.getElementById("resumoAgendamento").innerHTML = `
+        <strong>Tipo:</strong> ${dadosAgendamento.tipo}<br>
+        <strong>Procedimento:</strong> ${dadosAgendamento.nome}<br>
+        <strong>Data:</strong> ${dadosAgendamento.data}<br>
+        <strong>Horário:</strong> ${dadosAgendamento.hora}<br>
+        ${dadosAgendamento.preparo ? `<strong>Preparo:</strong> ${dadosAgendamento.preparo}` : ""}
+      `;
+
+        document.getElementById("popupConfirmacao").classList.remove("hidden");
+      });
+
+    function fecharPopup() {
+      window.location.href = "/historico.html";
+    }
+
+    async function loadFragment(containerId, fragmentPath, errorMessage) {
+      try {
+        const resp = await fetch(fragmentPath);
+        if (!resp.ok) throw new Error(`Erro ${resp.status}`);
+        const html = await resp.text();
+        document.getElementById(containerId).innerHTML = html;
+      } catch (error) {
+        console.error(errorMessage, error);
+        document.getElementById(containerId).innerHTML =
+          `<div class="alert alert-danger p-2 m-0">Falha ao carregar ${containerId.replace("-placeholder", "")}.</div>`;
+      }
+    }
+
+    loadFragment(
+      "navbar-placeholder",
+      "/fragments/navbar.html",
+      "Não foi possível carregar navbar:",
+    );
+    loadFragment(
+      "footer-placeholder",
+      "/fragments/footer.html",
+      "Não foi possível carregar footer:",
+    );
+  </script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"
+  ></script>
+</html>
