@@ -3,6 +3,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BioHealth</title>
+    <link rel="icon" href="/assets/img/logo_biohealth_black.svg" size="32x32" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,7 +16,7 @@
       rel="stylesheet"
     />
   </head>
-  <link rel="stylesheet" href="/assets/css/agendamento.css" />
+  <link rel="stylesheet" href="/assets/css/navegacao/agendamento.css" />
 
   <body>
     <!-- Navbar -->
@@ -90,10 +92,18 @@
               <!-- consulta -->
               <div class="step hidden" id="tipoConsulta">
                 <label>Tipo de consulta</label>
-                <select class="form-control">
-                  <option>Primeira consulta</option>
-                  <option>Retorno</option>
+                <select class="form-control" id="tipoConsultaSelect">
+                  <option value="">Selecione</option>
+                  <option value="Primeira consulta">Primeira consulta</option>
+                  <option value="Retorno">Retorno</option>
                 </select>
+
+                <div class="hidden mt-3" id="especialidadeContainer">
+                  <label>Especialidade</label>
+                  <select class="form-control" id="especialidadeConsulta">
+                    <option value="">Selecione uma especialidade</option>
+                  </select>
+                </div>
               </div>
 
               <!-- exame -->
@@ -173,9 +183,51 @@
   </body>
 
   <script>
+    const consultasEspecialidades = {
+      "Clínica Geral": ["Clínica Geral"],
+      Cardiologia: ["Cardiologia"],
+      Neurologia: ["Neurologia"],
+      Ortopedia: ["Ortopedia"],
+      Pneumologia: ["Pneumologia"],
+      Gastroenterologia: ["Gastroenterologia"],
+      Endocrinologia: ["Endocrinologia"],
+      Ginecologia: ["Ginecologia"],
+      Dermatologia: ["Dermatologia"],
+      Urologia: ["Urologia"],
+      Psiquiatria: ["Psiquiatria"],
+      Pediatria: ["Pediatria"],
+    };
+
+    const tipoConsultaSelect = document.getElementById("tipoConsultaSelect");
+    const especialidadeContainer = document.getElementById(
+      "especialidadeContainer",
+    );
+    const especialidadeSelect = document.getElementById(
+      "especialidadeConsulta",
+    );
+
+    tipoConsultaSelect.addEventListener("change", () => {
+      if (tipoConsultaSelect.value) {
+        especialidadeContainer.classList.remove("hidden");
+
+        especialidadeSelect.innerHTML = `<option value="">Selecione uma especialidade</option>`;
+
+        Object.keys(consultasEspecialidades)
+          .sort()
+          .forEach((esp) => {
+            const option = document.createElement("option");
+            option.value = esp;
+            option.textContent = esp;
+            especialidadeSelect.appendChild(option);
+          });
+      } else {
+        especialidadeContainer.classList.add("hidden");
+        especialidadeSelect.innerHTML = `<option value="">Selecione uma especialidade</option>`;
+      }
+    });
+
     const tipo = document.getElementById("tipo");
 
-    // EXAMES
     const examesData = {
       Cardíacos: [
         "Ecocardiograma",

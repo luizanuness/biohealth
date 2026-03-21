@@ -12,7 +12,8 @@ body {
   background-image: url(/assets/img/background.jpg);
 }
 
-.container-form {
+.container-form,
+.container.mt-5 {
   flex: 1;
 }
 
@@ -161,8 +162,17 @@ body {
 }
 
 /* login e cadastro */
-#loginBox,
+#loginBox {
+  height: 600px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
 #registerBox {
+  height: 700px;
   background-color: #ffffff;
   border-radius: 16px;
   padding: 0;
@@ -175,9 +185,41 @@ body {
   margin: 0;
 }
 
-#loginBox .col-md-6,
-#registerBox .col-md-6 {
+#registerBox .row {
+  display: flex;
+  align-items: stretch;
+}
+
+#loginBox .col-md-6 {
   padding: 0;
+}
+
+#registerBox .col-md-4 {
+  padding: 0;
+}
+
+#registerBox .col-md-4 img {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+  display: block;
+}
+
+#registerBox .form-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 16px 16px 0;
+}
+
+#registerBox .mb-2 {
+  margin-bottom: 10px !important;
+}
+
+#loginBox .mb-3 {
+  margin-bottom: 10px !important;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 /*formulário*/
@@ -214,9 +256,13 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
-#loginBox .col-md-6:first-child,
-#registerBox .col-md-6:last-child {
+#loginBox .col-md-6:first-child {
   padding: 30px 25px;
+}
+
+.logo-top {
+  max-width: 280px;
+  margin-bottom: 20px;
 }
 
 label {
@@ -243,11 +289,10 @@ footer {
   }
 
   .form-img {
-    display: none; /* remove imagem no mobile */
+    display: none;
   }
 
-  #loginBox .col-md-6,
-  #registerBox .col-md-6 {
+  #loginBox .col-md-6 {
     width: 100%;
   }
 
@@ -257,7 +302,7 @@ footer {
 
   .form-control {
     font-size: 14px;
-    padding: 10px;
+    padding: 5px;
   }
 
   .btn-primary,

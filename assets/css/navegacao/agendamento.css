@@ -1,0 +1,251 @@
+/*fundo*/
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  flex: 1;
+}
+
+/* navbar */
+.navbar-logo {
+  width: 200px;
+  height: auto;
+  margin-right: 0.4rem;
+}
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 0.5rem;
+}
+.navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+}
+.navbar-nav .nav-link {
+  font-weight: 700;
+  color: #000000;
+}
+.navbar-nav .nav-link:hover {
+  color: #75b3d6 !important;
+}
+.navbar-nav .nav-link.active {
+  color: #75b3d6 !important;
+  border-bottom: 2px solid #75b3d6;
+  padding-bottom: 0.15rem;
+}
+
+/* topo */
+.agendamento-topo {
+  background: linear-gradient(90deg, #51a6eb, #7ebbf5);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.agendamento-topo h1 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.agendamento-topo p {
+  opacity: 0.9;
+}
+
+/*container */
+.agendamento-page {
+  margin: 40px auto;
+  padding: 0 15px;
+}
+
+/*formulario*/
+.form-box {
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.step {
+  margin-bottom: 18px;
+}
+
+.step label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.form-control:focus {
+  border-color: #3da2ff;
+  box-shadow: 0 0 0 0.2rem rgba(61, 162, 255, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+/*botões */
+
+.btn-agendar {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 12px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(90deg, #1b73d4, #3da2ff);
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.btn-agendar:hover {
+  background: linear-gradient(90deg, #1259aa, #2d8be0);
+  transform: translateY(-2px);
+}
+
+/*imagem*/
+.image-box img {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/*avisos */
+.avisos-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.aviso-card {
+  background: #f8fbff;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  border: 1px solid #e6f0fa;
+  transition: 0.3s;
+  height: 100%;
+}
+
+.aviso-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(106, 150, 245, 0.1);
+}
+
+.aviso-card .icon {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.aviso-card h6 {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.aviso-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/*popup*/
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.popup:not(.hidden) {
+  display: flex;
+}
+
+.popup-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+footer {
+  background: #ffffff;
+  color: #000000;
+  text-align: center;
+  padding: 1rem 0;
+}
+#footer-placeholder {
+  margin-top: 40px;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .image-box img {
+    max-height: 300px;
+  }
+
+  .form-box {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .agendamento-topo {
+    padding: 40px 15px;
+  }
+
+  .agendamento-topo h1 {
+    font-size: 22px;
+  }
+
+  .agendamento-topo p {
+    font-size: 14px;
+  }
+
+  .form-box {
+    padding: 20px;
+  }
+
+  .btn-agendar {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .aviso-card {
+    padding: 15px;
+  }
+
+  .aviso-card p {
+    font-size: 13px;
+  }
+}
