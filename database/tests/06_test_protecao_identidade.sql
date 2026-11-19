@@ -60,3 +60,28 @@ WHERE id = @solicitacao_teste;
 
 -- PARE AQUI.
 -- Execute o UPDATE abaixo separadamente.
+-- =====================================================
+-- TESTE - BLOQUEAR ALTERACAO DA IDENTIDADE
+-- Esperado: MySQL Error 1644
+-- =====================================================
+
+UPDATE solicitacao_vinculo
+SET paciente_id = @paciente_b
+WHERE id = @solicitacao_teste;
+
+-- Confirmar que a identidade foi preservada
+SELECT
+    id,
+    paciente_id,
+    responsavel_id,
+    status
+FROM solicitacao_vinculo
+WHERE id = @solicitacao_teste;
+
+-- Descartar registros temporarios
+ROLLBACK;
+
+-- Confirmar limpeza
+SELECT COUNT(*) AS registros_restantes
+FROM solicitacao_vinculo
+WHERE id = @solicitacao_teste;
