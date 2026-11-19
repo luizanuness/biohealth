@@ -71,7 +71,7 @@ CREATE TABLE autorizacao_categoria (
   REFERENCES categoria_acesso(id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DELIMITER $
+DELIMITER $$
 CREATE TRIGGER trg_autorizacao_before_insert
 BEFORE INSERT ON autorizacao_acesso_paciente FOR EACH ROW
 BEGIN
