@@ -1,66 +1,58 @@
 -- =====================================================
--- BIOHEALTH - DADOS INICIAIS DE TESTE
--- Etapa 08 | Administrador temporario
+-- BIOHEALTH
+-- ETAPA 08 - TESTES DE AUTORIZACAO DE ACESSO
+-- MySQL Server 8.4
+-- Ambiente exclusivo: biohealth_teste_08
 -- =====================================================
 
 USE biohealth_teste_08;
 
--- Interromper caso a conexao esteja em outro banco
+-- TESTE 01: Conferir o banco selecionado
 SELECT DATABASE() AS banco_atual;
 
-START TRANSACTION;
-
--- Criar pessoa administrativa ficticia
-INSERT INTO pessoa (
-    nome,
-    cpf
-)
-VALUES (
-    'Administrador Teste BioHealth',
-    NULL
-);
-
-SET @pessoa_admin_id = LAST_INSERT_ID();
-
--- Criar usuario de teste
--- Hash ficticio: nao utilizar para autenticacao real
-INSERT INTO usuario (
-    pessoa_id,
-    email,
-    senha_hash,
-    ativo
-)
-VALUES (
-    @pessoa_admin_id,
-    'admin.etapa08@biohealth.invalid',
-    'HASH_FICTICIO_SOMENTE_TESTE',
-    TRUE
-);
-
-SET @usuario_admin_id = LAST_INSERT_ID();
-
--- Associar ao papel ADMIN
-INSERT INTO usuario_papel (
-    usuario_id,
-    papel_id
-)
+-- TESTE 02: Conferir autorizacoes existentes
 SELECT
-    @usuario_admin_id,
-    id
-FROM papel
-WHERE codigo = 'ADMIN';
+    id,
+    paciente_responsavel_id,
+    status,
+    concedida_em,
+    encerrada_em
+FROM autorizacao_acesso_paciente
+ORDER BY id;
 
-COMMIT;
-
--- Confirmar usuario administrativo
+-- TESTE 03: Conferir categorias vinculadas
 SELECT
-    u.id AS usuario_admin_id,
-    p.nome,
+    a.id AS autorizacao_id,
+    a.status,
+    c.codigo AS categoria
+FROM autorizacao_acesso_paciente a
+JOIN autorizacao_categoria ac
+    ON ac.autorizacao_id = a.id
+JOIN categoria_acesso c
+    ON c.id = ac.categoria_id
+ORDER BY a.id, c.codigo;
+
+-- TESTE 04: Conferir vinculos ativos
+SELECT
+    id,
+    paciente_id,
+    responsavel_id,
+    solicitacao_vinculo_id,
+    iniciado_em,
+    encerrado_em
+FROM paciente_responsavel
+WHERE encerrado_em IS NULL;
+
+-- TESTE 05: Conferir usuarios administradores ativos
+SELECT
+    u.id,
     u.email,
     u.ativo,
-    pa.codigo AS papel
+    p.codigo AS papel
 FROM usuario u
-JOIN pessoa p ON p.id = u.pessoa_id
-JOIN usuario_papel up ON up.usuario_id = u.id
-JOIN papel pa ON pa.id = up.papel_id
-WHERE u.id = @usuario_admin_id;
+JOIN usuario_papel up
+    ON up.usuario_id = u.id
+JOIN papel p
+    ON p.id = up.papel_id
+WHERE p.codigo = 'ADMIN'
+  AND u.ativo = TRUE;
