@@ -1,71 +1,45 @@
-# 🩺 BioHealth
+# BioHealth
 
-BioHealth é um projeto web voltado para a área da saúde, desenvolvido com foco em organização, usabilidade e experiência do usuário.
+Aplicação web acadêmica de gestão de clínica de saúde, desenvolvida no projeto de extensão da Universidade de Sorocaba (UNISO).
 
-## 📂 Estrutura do Projeto
+## Estado atual
 
-```bash
-biohealth/
-├── assets/       # Imagens, ícones e arquivos estáticos
-├── fragments/    # Componentes reutilizáveis
-├── navegacao/    # Páginas de navegação
-├── paciente/     # Funcionalidades relacionadas ao paciente
-└── index.html    # Página inicial
+- **Frontend existente:** HTML5, CSS3, JavaScript e Bootstrap, com páginas estáticas em `index.html`, `navegacao/` e `paciente/`.
+- **Banco de dados implementado:** MySQL 8.4 LTS; 19 tabelas, 16 triggers e 2 stored procedures confirmadas no ambiente `biohealth` em 19/11/2026.
+- **Backend planejado:** Java, Spring Boot, Spring Data JPA, APIs REST e Spring Security. Ainda não implementado.
+- **Integração frontend/backend:** pendente.
+- **Testes:** há scripts SQL de desenvolvimento; a instalação integral a partir de um banco vazio e a regressão completa ainda precisam de validação.
+
+A existência de uma tabela SQL não significa que o fluxo correspondente esteja funcional na aplicação.
+
+## Estrutura
+
+```text
+assets/                 Estilos e imagens do frontend
+fragments/              Fragmentos HTML compartilhados
+navegacao/              Páginas públicas
+paciente/               Páginas da área do paciente
+database/scripts/       Scripts SQL oficiais de instalação
+database/tests/         Testes e fixtures legados (em reorganização)
+database/README_EXECUCAO_SQL.md   Ordem e cuidados de instalação
+index.html              Página inicial
 ```
 
-## 🚀 Tecnologias Utilizadas
+## Banco de dados
 
-- HTML5
-- CSS3
-- JavaScript
-- Git e GitHub
+Consulte [as instruções de execução](database/README_EXECUCAO_SQL.md). Os 13 scripts de instalação das etapas 00–10 são a referência atual do schema. O arquivo `08_complemento_autorizacao.sql` é **legado de recuperação** e não faz parte da instalação normal.
 
-## 🎯 Objetivo
+**Segurança:** não execute scripts de testes ou instalação sobre um banco com dados sem avaliar previamente seu efeito. Preserve os bancos existentes; faça testes de instalação em schema isolado.
 
-Desenvolver uma plataforma web para centralizar informações da área da saúde por meio de uma interface intuitiva e organizada.
+## Próximas frentes
 
+1. Organizar scripts, testes e documentação sem perda de histórico ou dados.
+2. Revisar a modelagem de agenda, integridade, serviços e permissões com base nos requisitos.
+3. Implementar o backend Spring Boot e integrar o frontend existente.
+4. Executar testes integrados e documentar a implantação.
 
-## 🔨 Próximas Implementações
+## Projeto
 
-- Integração com back-end
-- Cadastro de usuários
-- Gerenciamento de pacientes
-- Dashboard com informações de saúde
-- Responsividade aprimorada
+Repositório: https://github.com/luizanuness/biohealth
 
-## 👩‍💻 Desenvolvedora
-
-Luiza Nunes
-
-GitHub: https://github.com/luizanuness/biohealth
-
-Trello: https://trello.com/invite/b/6a3b1bd423d6c23ae43ad140/ATTIaa5789161158321df375f0e3c179c4e4D51DCBA9/biohealth
-
----
-
-Projeto desenvolvido para fins acadêmicos e aprendizado.
-
-
-## 🗄️ Banco de dados — MySQL 8.4
-
-Os scripts SQL estão em `database/scripts/` e os testes em `database/tests/`.
-O backend Java/Spring Boot continua **planejado**, não implementado.
-
-Ordem para criar um banco **novo**:
-1. `00_criar_banco.sql` até `07_paciente_responsavel.sql`, respeitando a ordem numérica e os ajustes da etapa 06.
-2. `08_preparacao_papel_admin.sql`.
-3. `08_autorizacao_acesso_paciente.sql` **somente em banco sem tabelas da Etapa 08**.
-
-Recuperação de desenvolvimento: `08_complemento_autorizacao.sql` é
-destinado exclusivamente ao ambiente em que as três tabelas da Etapa 08
-já existem, e os registros de `autorizacao_acesso_paciente` e
-`autorizacao_categoria` estão vazios. O complemento recria somente
-triggers e procedures da Etapa 08: **não** execute os dois scripts 08
-de instalação/complemento em sequência.
-
-**Estado:** as etapas anteriores possuem scripts e testes no repositório.
-A Etapa 08 está em correção e precisa de validação funcional no MySQL
-Workbench antes de ser marcada como concluída. O arquivo
-`database/tests/04_test_integridade_cpf.sql` ainda necessita de
-restauração dos testes. O modelo de papéis e SQL não substitui
-autenticação e privilégios mínimos no futuro backend.
+Projeto acadêmico individual, iniciado em 2026.
