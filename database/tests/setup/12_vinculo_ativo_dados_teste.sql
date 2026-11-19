@@ -1,59 +1,13 @@
--- =====================================================
--- BIOHEALTH - ETAPA 08
--- CRIACAO DO VINCULO ATIVO - CORRECAO ERRO 1442
--- Ambiente isolado: biohealth_teste_08
--- =====================================================
-
-USE biohealth_teste_08;
-
--- Encerrar eventual transacao pendente da tentativa anterior
-ROLLBACK;
-
--- Conferir se o vinculo ainda nao existe
-SELECT
-    id,
-    paciente_id,
-    responsavel_id,
-    solicitacao_vinculo_id,
-    encerrado_em
-FROM paciente_responsavel
-WHERE solicitacao_vinculo_id = 1;
-
--- Conferir a solicitacao aprovada
-SELECT
-    id,
-    paciente_id,
-    responsavel_id,
-    status
-FROM solicitacao_vinculo
-WHERE id = 1;
-
--- EXECUTAR O BLOCO ABAIXO SOMENTE SE:
--- 1. Nenhum vinculo existir para a solicitacao 1
--- 2. A solicitacao estiver APROVADA
+-- Fixture de desenvolvimento: executar após 11_solicitacao_vinculo_dados_teste.sql
+-- na MESMA conexão e somente em banco de teste vazio.
+USE biohealth_validacao_integrada;
 
 START TRANSACTION;
-
-INSERT INTO paciente_responsavel (
-    paciente_id,
-    responsavel_id,
-    solicitacao_vinculo_id
-)
-VALUES (
-    1,
-    1,
-    1
-);
-
+INSERT INTO paciente_responsavel
+  (paciente_id, responsavel_id, solicitacao_vinculo_id)
+VALUES (@paciente_id, @responsavel_id, @solicitacao_id);
+SET @vinculo_id = LAST_INSERT_ID();
 COMMIT;
 
--- Verificar a persistencia
-SELECT
-    id,
-    paciente_id,
-    responsavel_id,
-    solicitacao_vinculo_id,
-    iniciado_em,
-    encerrado_em
-FROM paciente_responsavel
-WHERE solicitacao_vinculo_id = 1;
+SELECT id, paciente_id, responsavel_id, solicitacao_vinculo_id, encerrado_em
+FROM paciente_responsavel WHERE id = @vinculo_id;
