@@ -10,7 +10,7 @@
 -- 3. Confirmar o bloqueio e executar ROLLBACK.
 -- =====================================================
 
-USE biohealth;
+USE biohealth_validacao_integrada;
 
 START TRANSACTION;
 
