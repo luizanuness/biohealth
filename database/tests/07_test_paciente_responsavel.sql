@@ -5,7 +5,7 @@
 -- MySQL Server 8.4 LTS
 -- =====================================================
 
-USE biohealth;
+USE biohealth_validacao_integrada;
 
 START TRANSACTION;
 
