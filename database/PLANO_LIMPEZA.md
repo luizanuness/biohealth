@@ -29,11 +29,11 @@
 ## Próximas tarefas do Pacote A
 
 - [x] Criar gerador de scripts temporários isolados em `database/tools/preparar_validacao.py` (não executa SQL).
-- [ ] Migrar os testes legados para execução isolada e repetível.
+- [x] Redirecionar os testes legados para o schema isolado.\n- [ ] Automatizar os cenários negativos legados (ainda exigem execução manual).
 - [x] Substituir marcador de CPF por verificações SQL não destrutivas no schema isolado.
 - [x] Remover dez cópias de DDL de `database/tests/setup/`; a geração temporária usa os scripts oficiais.
-- [ ] Retirar `08_complemento_autorizacao.sql` do fluxo principal, preservando histórico Git.
-- [ ] Revisar referências do frontend antes de remover assets ou páginas.
+- [x] Marcar `08_complemento_autorizacao.sql` como recuperação legada e excluir explicitamente do fluxo oficial nos READMEs.\n- [ ] Mover ou remover o arquivo legado físico somente após revisão de referências.
+- [x] Conferir referências diretas de CSS, imagens e scripts nas oito páginas HTML e dois fragments; não houve exclusão de assets sem prova de desuso.
 - [ ] Executar validação integrada do Pacote A e abrir caminho para migrações.
 
 ## Estado
@@ -49,3 +49,14 @@ Documentação, gerador de validação e limpeza inicial preparados na branch `c
 5. Não executar os testes SQL legados que usam `USE biohealth;` contra a base principal. A migração desses testes para ambiente isolado ainda está pendente.
 
 A ferramenta não cria, remove nem acessa bancos de dados; gera arquivos temporários locais. Não houve validação integrada executada nesta branch.
+
+## Auditoria inicial do frontend
+
+Foram examinadas as referências diretas dos oito documentos HTML (página inicial, quatro páginas em `navegacao/` e três em `paciente/`) e dos dois fragments. Todos os arquivos CSS das pastas `assets/css/navegacao/` e `assets/css/pct/`, além de `assets/css/index.css`, aparecem referenciados por suas páginas correspondentes. O frontend depende de Bootstrap via CDN e possui scripts inline; não foi encontrado diretório JavaScript próprio na árvore do repositório. Não foram removidos assets: imagens não referenciadas diretamente por HTML ainda podem ser usadas por CSS, e uma varredura completa de CSS é pendente.
+
+## Ajustes de testes efetuados
+
+- Os testes legados que apontavam para `biohealth` ou `biohealth_teste_08` foram redirecionados para `biohealth_validacao_integrada`.
+- Fixtures 11 e 12 deixaram de usar IDs fixos e dependem de variáveis de sessão das fixtures anteriores.
+- Criado `database/tests/README.md` com instruções e limitações dos testes manuais.
+- Nenhuma execução de SQL ocorreu durante esta reorganização.
