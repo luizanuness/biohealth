@@ -105,3 +105,51 @@ WHERE id = @solicitacao_original_id;
 
 -- PARE A EXECUCAO AQUI.
 -- Nao execute ROLLBACK antes do teste seguinte.
+-- =====================================================
+-- TESTE 04 - BLOQUEAR REABERTURA DE SOLICITACAO
+-- Esperado: MySQL Error 1644.
+-- Executar o UPDATE separadamente.
+-- =====================================================
+
+UPDATE solicitacao_vinculo
+SET status = 'PENDENTE'
+WHERE id = @solicitacao_original_id;
+
+-- =====================================================
+-- TESTE 05 - CONFIRMAR PRESERVACAO DO HISTORICO
+-- Executar depois de confirmar o erro 1644.
+-- =====================================================
+
+SELECT
+    id,
+    paciente_id,
+    responsavel_id,
+    status,
+    analisada_em,
+    analisada_por_usuario_id,
+    justificativa_decisao
+FROM solicitacao_vinculo
+WHERE id IN (
+    @solicitacao_original_id,
+    @nova_solicitacao_id
+)
+ORDER BY id;
+
+-- =====================================================
+-- TESTE 06 - DESCARTAR REGISTROS TEMPORARIOS
+-- Executar separadamente, ao finalizar os testes.
+-- =====================================================
+
+ROLLBACK;
+
+-- =====================================================
+-- TESTE 07 - CONFIRMAR LIMPEZA
+-- Esperado: registros_restantes = 0.
+-- =====================================================
+
+SELECT COUNT(*) AS registros_restantes
+FROM solicitacao_vinculo
+WHERE id IN (
+    @solicitacao_original_id,
+    @nova_solicitacao_id
+);
