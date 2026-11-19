@@ -1,13 +1,5 @@
-
--- =====================================================
--- BIOHEALTH
--- MODULO 03 - PERFIS
--- MySQL Server 8.4 LTS
--- =====================================================
-
 USE biohealth;
 
--- 1. PACIENTE
 
 CREATE TABLE paciente (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -29,7 +21,6 @@ CREATE TABLE paciente (
   COLLATE = utf8mb4_0900_ai_ci;
 
 
--- 2. RESPONSAVEL LEGAL
 
 CREATE TABLE responsavel_legal (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -51,7 +42,6 @@ CREATE TABLE responsavel_legal (
   COLLATE = utf8mb4_0900_ai_ci;
 
 
--- 3. FUNCIONARIO
 
 CREATE TABLE funcionario (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -77,7 +67,6 @@ CREATE TABLE funcionario (
   COLLATE = utf8mb4_0900_ai_ci;
 
 
--- 4. PROFISSIONAL DE SAUDE
 
 CREATE TABLE profissional_saude (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,

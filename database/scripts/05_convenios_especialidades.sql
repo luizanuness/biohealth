@@ -1,13 +1,5 @@
-
--- =====================================================
--- BIOHEALTH
--- MODULO 05 - CONVENIOS E ESPECIALIDADES
--- MySQL Server 8.4 LTS
--- =====================================================
-
 USE biohealth;
 
--- 1. CONVENIO
 
 CREATE TABLE convenio (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -28,7 +20,6 @@ CREATE TABLE convenio (
   COLLATE = utf8mb4_0900_ai_ci;
 
 
--- 2. PACIENTE_CONVENIO
 
 CREATE TABLE paciente_convenio (
     paciente_id BIGINT UNSIGNED NOT NULL,
@@ -59,7 +50,6 @@ CREATE TABLE paciente_convenio (
   COLLATE = utf8mb4_0900_ai_ci;
 
 
--- 3. ESPECIALIDADE
 
 CREATE TABLE especialidade (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -80,7 +70,6 @@ CREATE TABLE especialidade (
   COLLATE = utf8mb4_0900_ai_ci;
 
 
--- 4. PROFISSIONAL_ESPECIALIDADE
 
 CREATE TABLE profissional_especialidade (
     profissional_id BIGINT UNSIGNED NOT NULL,

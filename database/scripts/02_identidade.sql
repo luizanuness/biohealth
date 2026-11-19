@@ -1,13 +1,5 @@
-
--- =====================================================
--- BIOHEALTH
--- MODULO 02 - IDENTIDADE DIGITAL
--- MySQL Server 8.4 LTS
--- =====================================================
-
 USE biohealth;
 
--- 1. Tabela USUARIO
 
 CREATE TABLE usuario (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -41,7 +33,6 @@ CREATE TABLE usuario (
   COLLATE = utf8mb4_0900_ai_ci;
 
 
--- 2. Tabela PAPEL
 
 CREATE TABLE papel (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -62,7 +53,6 @@ CREATE TABLE papel (
   COLLATE = utf8mb4_0900_ai_ci;
 
 
--- 3. Tabela USUARIO_PAPEL
 
 CREATE TABLE usuario_papel (
     usuario_id BIGINT UNSIGNED NOT NULL,

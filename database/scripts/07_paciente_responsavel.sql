@@ -1,11 +1,3 @@
-
--- =====================================================
--- BIOHEALTH
--- MODULO 07 - VINCULO PACIENTE / RESPONSAVEL
--- MySQL Server 8.4 LTS
--- Executar apos o modulo 06
--- =====================================================
-
 USE biohealth;
 
 CREATE TABLE paciente_responsavel (
@@ -23,7 +15,6 @@ CREATE TABLE paciente_responsavel (
 
     encerrado_em DATETIME(6) NULL,
 
-    -- Colunas geradas para identificar vinculos ativos
 
     paciente_ativo_id BIGINT UNSIGNED
         GENERATED ALWAYS AS (
@@ -43,17 +34,14 @@ CREATE TABLE paciente_responsavel (
             END
         ) STORED,
 
-    -- Chave primaria
 
     CONSTRAINT pk_paciente_responsavel
         PRIMARY KEY (id),
 
-    -- Cada solicitacao origina no maximo um vinculo
 
     CONSTRAINT uq_pr_solicitacao
         UNIQUE (solicitacao_vinculo_id),
 
-    -- Impede dois vinculos ativos para o mesmo par
 
     CONSTRAINT uq_pr_par_ativo
         UNIQUE (
@@ -61,13 +49,11 @@ CREATE TABLE paciente_responsavel (
             responsavel_ativo_id
         ),
 
-    -- Indices auxiliares
 
     INDEX idx_pr_paciente (paciente_id),
 
     INDEX idx_pr_responsavel (responsavel_id),
 
-    -- Chaves estrangeiras
 
     CONSTRAINT fk_pr_paciente
         FOREIGN KEY (paciente_id)
@@ -92,7 +78,6 @@ CREATE TABLE paciente_responsavel (
         )
         ON DELETE RESTRICT,
 
-    -- Data de encerramento nao pode ser anterior ao inicio
 
     CONSTRAINT chk_pr_periodo
         CHECK (
@@ -104,13 +89,8 @@ CREATE TABLE paciente_responsavel (
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
--- =====================================================
--- MODULO 07 - TRIGGERS DE INTEGRIDADE
--- =====================================================
-
 DELIMITER $$
 
--- 1. Validar solicitacao aprovada
 
 CREATE TRIGGER trg_pr_before_insert
 BEFORE INSERT ON paciente_responsavel
@@ -150,7 +130,6 @@ BEGIN
 
 END$$
 
--- 2. Proteger identidade e encerramento definitivo
 
 CREATE TRIGGER trg_pr_before_update
 BEFORE UPDATE ON paciente_responsavel
@@ -188,7 +167,6 @@ BEGIN
 
 END$$
 
--- 3. Impedir exclusao do historico
 
 CREATE TRIGGER trg_pr_before_delete
 BEFORE DELETE ON paciente_responsavel

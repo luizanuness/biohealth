@@ -1,11 +1,3 @@
-
--- =====================================================
--- BIOHEALTH
--- MODULO 01 - IDENTIDADE
--- TABELA: PESSOA
--- MySQL Server 8.4 LTS
--- =====================================================
-
 USE biohealth;
 
 CREATE TABLE pessoa (

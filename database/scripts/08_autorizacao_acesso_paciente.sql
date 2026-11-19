@@ -1,7 +1,3 @@
--- BioHealth | Etapa 08 | Instalacao completa em banco NOVO
--- Requer Etapas 00-07 e 08_preparacao_papel_admin.sql.
--- Para o banco local com as tres tabelas JA existentes, NAO executar este arquivo:
--- executar apenas 08_complemento_autorizacao.sql apos validar ausencia de dados.
 USE biohealth;
 
 CREATE TABLE categoria_acesso (
@@ -203,9 +199,6 @@ BEGIN
  END IF;
 END$$
 
--- Estas procedures controlam a transacao (COMMIT/ROLLBACK).
--- Nao chama-las dentro de uma transacao externa.
--- No ambiente de aplicacao, restringir DML direto nas tabelas.
 CREATE PROCEDURE sp_conceder_acesso_paciente(
  IN p_vinculo_id BIGINT UNSIGNED,
  IN p_admin_usuario_id BIGINT UNSIGNED,
@@ -282,7 +275,7 @@ BEGIN
  IF NOT v_existe THEN
   SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Autorizacao inexistente';
  END IF;
- -- Bloqueio na ordem vinculo -> autorizacao.
+
  SELECT id INTO v_vinculo_id FROM paciente_responsavel
  WHERE id=v_vinculo_id FOR UPDATE;
  SELECT status INTO v_status FROM autorizacao_acesso_paciente
@@ -308,7 +301,7 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Conferencia dos objetos, sem modifica-los
+
 SELECT TRIGGER_NAME FROM information_schema.TRIGGERS
  WHERE TRIGGER_SCHEMA='biohealth'
  AND (TRIGGER_NAME LIKE 'trg_autorizacao%'

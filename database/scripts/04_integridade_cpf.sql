@@ -1,15 +1,7 @@
-
--- =====================================================
--- BIOHEALTH
--- MODULO 04 - INTEGRIDADE DO CPF
--- MySQL Server 8.4 LTS
--- =====================================================
-
 USE biohealth;
 
 DELIMITER $$
 
--- PACIENTE: validacao na insercao
 
 CREATE TRIGGER trg_paciente_cpf_insert
 BEFORE INSERT ON paciente
@@ -28,7 +20,6 @@ BEGIN
 END$$
 
 
--- PACIENTE: validacao na alteracao
 
 CREATE TRIGGER trg_paciente_cpf_update
 BEFORE UPDATE ON paciente
@@ -47,7 +38,6 @@ BEGIN
 END$$
 
 
--- RESPONSAVEL: validacao na insercao
 
 CREATE TRIGGER trg_responsavel_cpf_insert
 BEFORE INSERT ON responsavel_legal
@@ -66,7 +56,6 @@ BEGIN
 END$$
 
 
--- RESPONSAVEL: validacao na alteracao
 
 CREATE TRIGGER trg_responsavel_cpf_update
 BEFORE UPDATE ON responsavel_legal
@@ -85,7 +74,6 @@ BEGIN
 END$$
 
 
--- PESSOA: impedir remocao de CPF obrigatorio
 
 CREATE TRIGGER trg_pessoa_cpf_update
 BEFORE UPDATE ON pessoa

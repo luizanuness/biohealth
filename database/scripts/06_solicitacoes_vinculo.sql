@@ -1,9 +1,3 @@
--- =====================================================
--- BIOHEALTH
--- MODULO 06 - SOLICITACOES DE VINCULO E PROTECAO
--- MySQL Server 8.4 LTS
--- =====================================================
-
 USE biohealth;
 
 CREATE TABLE solicitacao_vinculo (
@@ -102,10 +96,6 @@ CREATE TABLE solicitacao_vinculo (
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
--- =====================================================
--- BIOHEALTH
--- MODULO 06 - PROTECAO DO HISTORICO
--- =====================================================
 
 DELIMITER $$
 
@@ -113,7 +103,6 @@ CREATE TRIGGER trg_solicitacao_status_update
 BEFORE UPDATE ON solicitacao_vinculo
 FOR EACH ROW
 BEGIN
-    -- A identidade da solicitacao nunca pode mudar
     IF NEW.paciente_id <> OLD.paciente_id
        OR NEW.responsavel_id <> OLD.responsavel_id THEN
 
@@ -122,7 +111,6 @@ BEGIN
             'Paciente e responsavel nao podem ser alterados';
     END IF;
 
-    -- Uma solicitacao analisada nao pode ser reaberta
     IF OLD.status IN ('APROVADA', 'REJEITADA')
        AND NEW.status <> OLD.status THEN
 
@@ -131,7 +119,6 @@ BEGIN
             'Solicitacao analisada nao permite alteracao de status';
     END IF;
 
-    -- Os dados da analise nao podem ser modificados
     IF OLD.status IN ('APROVADA', 'REJEITADA')
        AND (
            NOT (NEW.analisada_em <=> OLD.analisada_em)
