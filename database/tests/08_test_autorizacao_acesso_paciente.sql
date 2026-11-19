@@ -5,7 +5,7 @@
 -- Ambiente exclusivo: biohealth_teste_08
 -- =====================================================
 
-USE biohealth_teste_08;
+USE biohealth_validacao_integrada;
 
 -- TESTE 01: Conferir o banco selecionado
 SELECT DATABASE() AS banco_atual;
