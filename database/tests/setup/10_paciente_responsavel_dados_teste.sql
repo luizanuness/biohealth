@@ -3,7 +3,7 @@
 -- DADOS DE TESTE: PACIENTE E RESPONSAVEL
 -- =====================================================
 
-USE biohealth_teste_08;
+USE biohealth_validacao_integrada;
 
 START TRANSACTION;
 
