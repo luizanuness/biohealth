@@ -3,7 +3,7 @@
 -- Etapa 08 | Administrador temporario
 -- =====================================================
 
-USE biohealth_teste_08;
+USE biohealth_validacao_integrada;
 
 -- Interromper caso a conexao esteja em outro banco
 SELECT DATABASE() AS banco_atual;
