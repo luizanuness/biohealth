@@ -28,14 +28,24 @@
 
 ## Próximas tarefas do Pacote A
 
-- [ ] Definir um instalador de testes que reutilize os scripts oficiais sem editar a origem.
+- [x] Criar gerador de scripts temporários isolados em `database/tools/preparar_validacao.py` (não executa SQL).
 - [ ] Migrar os testes legados para execução isolada e repetível.
-- [ ] Substituir o marcador de CPF por testes de integridade reais.
-- [ ] Remover as cópias de DDL de `database/tests/setup/` **após** disponibilizar substituto.
+- [x] Substituir marcador de CPF por verificações SQL não destrutivas no schema isolado.
+- [x] Remover dez cópias de DDL de `database/tests/setup/`; a geração temporária usa os scripts oficiais.
 - [ ] Retirar `08_complemento_autorizacao.sql` do fluxo principal, preservando histórico Git.
 - [ ] Revisar referências do frontend antes de remover assets ou páginas.
 - [ ] Executar validação integrada do Pacote A e abrir caminho para migrações.
 
 ## Estado
 
-Documentação e inventário preparados na branch `chore/pacote-a-organizacao`. Nenhum dado do MySQL foi modificado.
+Documentação, gerador de validação e limpeza inicial preparados na branch `chore/pacote-a-organizacao`. Nenhum dado do MySQL foi modificado.
+
+## Instruções de validação isolada
+
+1. Executar `python database/tools/preparar_validacao.py` a partir da raiz do repositório.
+2. Localizar a pasta temporária impressa pelo comando; ela contém 13 scripts oficiais adaptados para `biohealth_validacao_integrada`.
+3. Executar os scripts temporários no Workbench, na ordem de `ORDEM_EXECUCAO.txt`, **somente quando esse schema de teste ainda não contiver tabelas**.
+4. Executar `database/tests/04_test_integridade_cpf.sql` e conferir as contagens.
+5. Não executar os testes SQL legados que usam `USE biohealth;` contra a base principal. A migração desses testes para ambiente isolado ainda está pendente.
+
+A ferramenta não cria, remove nem acessa bancos de dados; gera arquivos temporários locais. Não houve validação integrada executada nesta branch.
