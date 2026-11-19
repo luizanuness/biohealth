@@ -1,0 +1,2 @@
+-- PENDENTE: restaurar o teste de integridade CPF da Etapa 04.
+-- O arquivo anterior no GitHub estava vazio; nao ha teste executavel aqui.
